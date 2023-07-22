@@ -44,7 +44,7 @@ class ProductManager {
 
         const productChoosen = this.products[productIndex];
         console.log(`El producto buscado es ${productChoosen.title}`);
-        return
+        return;
     }
 }
 
