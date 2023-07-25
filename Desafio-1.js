@@ -38,7 +38,7 @@ class ProductManager {
     getProductsById = (idProduct) => {
         const productIndex = this.products.findIndex( (e) => e.id === idProduct );
         if(productIndex === -1){
-            console.log('Not found');
+            console.log(`ID ${idProduct} NOT FOUND`);
             return;
         }
 
@@ -56,6 +56,7 @@ manejadorDeProductos.addProducts('Naranja','1kg de naranjas','$300','naranja.png
 manejadorDeProductos.addProducts('Kiwi','2kg de kiwi','$500','kiwi.png','IRAM283AOX','800');
 manejadorDeProductos.getProductsById(1);
 manejadorDeProductos.getProductsById(2);
-manejadorDeProductos.getProductsById(5);
+manejadorDeProductos.getProductsById(8);
+manejadorDeProductos.getProductsById(12);
 manejadorDeProductos.getProductsById(3);
 console.log(manejadorDeProductos.getProducts());
