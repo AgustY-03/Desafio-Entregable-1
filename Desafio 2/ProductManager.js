@@ -5,7 +5,7 @@ class ProductManager {
     constructor () {
         this.products = []
         this.idCounter = 1;
-        this.path = './json/products.json';
+        this.path = './products.json';
     }
 
     consultProduct = async () => {
@@ -166,10 +166,10 @@ const data = {
 }
 
 const manejadorDeProductos = new ProductManager();
-manejadorDeProductos.getProducts();
+/* manejadorDeProductos.getProducts();
 manejadorDeProductos.addProducts('producto prueba', 'este es un producto prueba', '200', 'sin imagen', 'abc123', '25');
 manejadorDeProductos.getProducts();
 manejadorDeProductos.getProductsById(1);
-manejadorDeProductos.getProductsById(2);
+manejadorDeProductos.getProductsById(2); */
 /* manejadorDeProductos.updateProduct(1, data); */
 /* manejadorDeProductos.deleteProduct(1); */
