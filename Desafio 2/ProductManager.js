@@ -17,8 +17,12 @@ class ProductManager {
     }
 
     getProducts = async () => {
-        const arrayProducts = await this.consultProduct()
-        console.log(arrayProducts)
+        if(fs.existsSync(this.path)){
+            const arrayProducts = await this.consultProduct()
+            console.log(arrayProducts)
+        }else{
+            console.log(this.products);
+        }
     }
 
     addProducts = async (title, description, price, thumbnail, code, stock) => {
@@ -111,11 +115,6 @@ class ProductManager {
                 return;
 			}
 
-            if(!data.title || !data.description || !data.price || !data.thumbnail || !data.code || !data.stock){
-                console.error('Todos los campos son obligatorios');
-                return;
-            }
-
             const validatingCode = updateProducts.findIndex( (i) => i.code === data.code );
             if(validatingCode !== -1){
                 console.error('El codigo del producto ya existe');
@@ -126,7 +125,8 @@ class ProductManager {
                 ...updateProducts[productIndex],
                 ...data,
             };
-            console.log(`El producto del ID: ${productIndex}, ha sido actualizado`);
+            console.log(`El producto del ID: ${productIndex + 1}, ha sido actualizado`);
+            console.log(updateProducts[productIndex]);
             await fs.promises.writeFile(this.path, JSON.stringify(updateProducts));
 		} catch (error) {
 			console.log(error);
@@ -157,18 +157,19 @@ class ProductManager {
 }
 
 const data = {
-    title: 'Banana',
-    description: '1kg de banana',
-    price: '$400',
-    thumbnail: 'banana.png',
-    code: 'SOXZ284IXJ',
-    stock: '362'
+    title: '',
+    description: '',
+    price: '',
+    thumbnail: '',
+    code: '',
+    stock: ''
 }
 
 const manejadorDeProductos = new ProductManager();
-manejadorDeProductos.addProducts('Tomate','1kg de tomate fresco','$200','tomate-fresco.png','AIEJ4291JSNC','500');
-manejadorDeProductos.addProducts('Manzana','2kg de manzanas','$400','manzana.png','SICK218SKX','300');
-manejadorDeProductos.getProductsById(2);
 manejadorDeProductos.getProducts();
-manejadorDeProductos.updateProduct(2, data);
-manejadorDeProductos.deleteProduct(1);
+manejadorDeProductos.addProducts('producto prueba', 'este es un producto prueba', '200', 'sin imagen', 'abc123', '25');
+manejadorDeProductos.getProducts();
+manejadorDeProductos.getProductsById(1);
+manejadorDeProductos.getProductsById(2);
+/* manejadorDeProductos.updateProduct(1, data); */
+/* manejadorDeProductos.deleteProduct(1); */
