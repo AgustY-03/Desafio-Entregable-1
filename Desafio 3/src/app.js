@@ -1,18 +1,9 @@
 import express from 'express';
-import fs from 'fs';
 import { ProductManager } from './ProductManager.js';
 
 // Funciones
 
-const path = './src/archivo/products.json';
-
-const consultProduct = async () => {
-    if(fs.existsSync(path)){
-        const data = await fs.promises.readFile(path, 'utf-8');
-        const products = JSON.parse(data);
-        return products;
-    }
-}
+const manejadorDeProductos = new ProductManager();
 
 const app = express();
 
@@ -24,7 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/products', async (req, res) => {
-    const productsList = await consultProduct();
+    const productsList = await manejadorDeProductos.consultProduct();
     const limit = req.query.limit;
     if(limit){
         const productLimit = productsList.filter( (e) => e.id <= limit)
@@ -36,7 +27,7 @@ app.get('/products', async (req, res) => {
 })
 
 app.get('/products/:pid', async (req, res) => {
-    const productsList = await consultProduct();
+    const productsList = await manejadorDeProductos.consultProduct();
 
     let pid = +req.params.pid;
     let producto = productsList.find( (e) => e.id === pid);
