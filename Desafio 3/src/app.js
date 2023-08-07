@@ -1,8 +1,6 @@
 import express from 'express';
 import { ProductManager } from './ProductManager.js';
 
-// Funciones
-
 const manejadorDeProductos = new ProductManager();
 
 const app = express();
