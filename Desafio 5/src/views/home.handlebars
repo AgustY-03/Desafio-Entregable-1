@@ -1,0 +1,26 @@
+<div class="contaner-fluid">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center fw-bold text-dark mt-4">List Products</h1>
+      <div class="col d-flex flex-wrap justify-content-center">
+        {{#each products}}
+          <div class="col-md-4 d-flex justify-content-center">
+            <div class="card m-4" style="width: 18rem; height:450px; ">
+              <img
+                src="{{this.thumbnails}}"
+                class="card-img-top img-fluid"
+                alt="{{this.title}}"
+                style="max-height:300px;"
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">{{this.description}}.</p>
+                <h5>Price: ${{this.price}}</h5>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
